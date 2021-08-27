@@ -54,3 +54,13 @@ Result Class:
 Store Class:
 	- Retrieve Files
 	- Store Files
+
+
+Game Operations:
+	- New Game
+	- Load Saved Game
+	- Play Game
+		- Get Guess
+		- Validate Guess
+		- Update Result
+	- Save Game

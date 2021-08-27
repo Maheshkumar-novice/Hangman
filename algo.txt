@@ -1,0 +1,56 @@
+Hangman with Files & Serialization - 
+	Build a Hangman game for the command line which loads words from a file and can be able to save the state of the game anytime and the saved game can be reloaded to play at the start.
+
+Steps:
+-> Understand the Problem (Explain simply, diagram)
+-> Plan (Pseudo Code, inputs, outputs, steps, ui, comments)
+-> Divide and Conquer (Split the problem into sub problems)
+
+Random Ideas:
+-> Color
+-> Hangman Picture
+
+Understand the Problem:
+	Hangman - one player will generate a word. other player will start guessing, if the guess is correct, all the place in which the guess appears will be replaced with the guess. if the guess is incorrect, then the incorrect guess is added to the incorrect row. Of course, there will be limited number of guesses for guesser. if the number of guesses over then game over. if the guesser manage to guess the word completely within the limit of chances then the guesser will be the winner. here we need to add the save option so the guesser can save the state of the game anytime while playing. we need to provide an option to load the saved game also. so the player will continue the game where he left off. first we will implement the simple version. then add upon it. time to plan and divide the problem with pseudo code.
+
+Plan:
+Input - player guess, word list file, saved state file, username 
+Output - state of the word, correct guesses, incorrect guesses.
+
+Pseudo Code:
+	- when the game starts ask the user for the chioce between New Game and Saved State
+	- If New Game selected then the new game will begin
+	- If Saved State chosen then all saved games will be listed user will be asked to chose the one
+	- After user choosing one, the game state will be loaded to the game 
+	- User will start guessing the word within the number of guesses
+	- Default number of guesses will be 5
+	- If the guess is correct then the state of the word updated and correct guess row updated
+	- else incorrect guess row updated
+	- guess will be reduced by 1
+	- On any time of the guess, user can store the game but one user can store one saved game the file will be named after the username
+	- So we need to check for username validation also
+	- Ask filename to store the file that's it, if already exits then ask for another name cool
+
+Divide & Conquer: 
+	- User class will contain methods to validate username and make player guess interfaces
+	- Game class will contain the game logic only - like check the guess with the current game state, creating new game, like that.
+	- Result class provides the output format
+	- Store class will store and retrieve games from files
+
+User Class:
+	- Get UserName
+	- Validate UserName
+	- Get PlayerChoice
+
+Game Class:
+	- Create New Game
+	- Load previous Game
+	- Validate Guess
+
+Result Class:
+	- Print State of the Game
+	- Print Results
+
+Store Class:
+	- Retrieve Files
+	- Store Files

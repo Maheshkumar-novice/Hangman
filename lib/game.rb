@@ -23,14 +23,19 @@ class Game
 
   def new_game
     word.secret_word = word.generate
-    update_game_state(word.secret_word, [], [], 2)
+    update_game_state(word.secret_word, [], [], 10)
+  end
+
+  def load_game
+    hash = YAML.load(file_handler.retrieve_file('save.yaml'))
+    word.placeholder = hash[:placeholder]
+    update_game_state(hash[:secret_word], hash[:correct_guesses], hash[:incorrect_guesses], hash[:remaining_guesses])
   end
 
   def save_game
     puts '================'
     hash = create_hash
     file_handler.save_file('save.yaml', YAML.dump(hash))
-    # puts YAML.load(YAML.dump(hash))
     puts '================'
   end
 
@@ -120,5 +125,5 @@ class Game
 end
 
 g = Game.new(User.new('hi'), Word.new(FileHandler.new), Guess.new, 'result', FileHandler.new)
-g.new_game
+g.load_game
 g.play

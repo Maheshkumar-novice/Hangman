@@ -3,20 +3,22 @@
 
 require_relative './file-handler'
 require_relative './user'
+require_relative './word'
 
 # Class Game
 class Game
-  attr_reader :file_handler
+  attr_reader :file_handler, :word
 
-  def initialize(user, file_handler, result)
+  def initialize(user, word, file_handler, result)
     @user = user
+    @word = word
     @file_handler = file_handler
     @result = result
     @total_guesses = 5
   end
 
   def new_game
-    word = get_random_word
+    word = self.word.generate
     update_game_state(word, [], [], 5)
   end
 
@@ -32,13 +34,6 @@ class Game
     @incorrect_guesses = incorrect_guesses
     @total_guesses = total_guesses
   end
-
-  def get_random_word
-    dictionary = file_handler.retrieve_file('lib/dictionary.txt').split("\n")
-    word = dictionary.sample
-    word = dictionary.sample until word.length >= 5 && word.length <= 12
-    word
-  end
 end
 
-Game.new('user', FileHandler.new, 'result').new_game
+Game.new('user', Word.new(FileHandler.new), FileHandler.new, 'result').new_game

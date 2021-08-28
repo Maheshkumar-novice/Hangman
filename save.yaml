@@ -1,0 +1,10 @@
+---
+:remaining_guesses: 6
+:correct_guesses:
+- o
+:incorrect_guesses:
+- e
+- f
+- a
+:secret_word: choirboy
+:placeholder: " _  _ o _  _  _ o _ "

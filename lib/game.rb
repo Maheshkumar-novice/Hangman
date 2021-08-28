@@ -32,8 +32,7 @@ class Game
     print_remaining_guesses
     loop do
       process
-      break if guess.total_guesses.zero?
-      break if word.placeholder == word.secret_word
+      check_end
     end
   end
 
@@ -41,13 +40,20 @@ class Game
 
   def process
     create_guess
+
     validation = validate_guess
     update_correct_guesses if validation
     update_placeholder if validation
     update_incorrect_guesses unless validation
+
     print_result
     update_total_guesses
     print_remaining_guesses
+  end
+
+  def check_end
+    break if guess.total_guesses.zero?
+    break if word.placeholder == word.secret_word
   end
 
   def print_remaining_guesses

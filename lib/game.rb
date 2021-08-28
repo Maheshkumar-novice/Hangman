@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative './store'
+require_relative './file-handler'
 require_relative './user'
 
 # Class Game
 class Game
-  attr_reader :store
+  attr_reader :file_handler
 
-  def initialize(user, store, result)
+  def initialize(user, file_handler, result)
     @user = user
-    @store = store
+    @file_handler = file_handler
     @result = result
     @total_guesses = 5
   end
@@ -34,11 +34,11 @@ class Game
   end
 
   def get_random_word
-    dictionary = store.retrieve_file('lib/dictionary.txt').split("\n")
+    dictionary = file_handler.retrieve_file('lib/dictionary.txt').split("\n")
     word = dictionary.sample
     word = dictionary.sample until word.length >= 5 && word.length <= 12
     word
   end
 end
 
-Game.new('user', Store.new, 'result').new_game
+Game.new('user', FileHandler.new, 'result').new_game

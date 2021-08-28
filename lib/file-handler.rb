@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Class Store
-class Store
+# Class FileHandler
+class FileHandler
   def retrieve_file(filename)
     File.read(filename)
   end

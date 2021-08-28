@@ -23,24 +23,22 @@ class Game
 
   def new_game
     word.secret_word = word.generate
-    update_game_state(word.secret_word, [], [], 10)
+    word.update_placeholder(guess.correct_guesses)
+    update_game_state(word.secret_word, [], [], 10, word.placeholder)
   end
 
   def load_game
     hash = YAML.load(file_handler.retrieve_file('save.yaml'))
-    word.placeholder = hash[:placeholder]
-    update_game_state(hash[:secret_word], hash[:correct_guesses], hash[:incorrect_guesses], hash[:remaining_guesses])
-  end
-
-  def save_game
-    puts '================'
-    hash = create_hash
-    file_handler.save_file('save.yaml', YAML.dump(hash))
-    puts '================'
+    update_game_state(
+      hash[:remaining_guesses],
+      hash[:correct_guesses],
+      hash[:incorrect_guesses],
+      hash[:secret_word],
+      hash[:placeholder]
+    )
   end
 
   def play
-    word.update_placeholder(guess.correct_guesses)
     print_result
     print_remaining_guesses
     loop do
@@ -51,11 +49,16 @@ class Game
 
   private
 
-  def update_game_state(secret_word, correct_guesses, incorrect_guesses, remaining_guesses)
-    word.secret_word = secret_word
+  def save_game
+    file_handler.save_file('save.yaml', YAML.dump(create_hash))
+  end
+
+  def update_game_state(remaining_guesses, correct_guesses, incorrect_guesses, secret_word, placeholder)
+    guess.remaining_guesses = remaining_guesses
     guess.correct_guesses = correct_guesses
     guess.incorrect_guesses = incorrect_guesses
-    guess.remaining_guesses = remaining_guesses
+    word.secret_word = secret_word
+    word.placeholder = placeholder
   end
 
   def process
@@ -83,7 +86,6 @@ class Game
   end
 
   def validate_guess
-    save_game if user_guess == 'y'
     guess.validate(user_guess, word.secret_word)
   end
 

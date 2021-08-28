@@ -18,7 +18,6 @@ class Word
   end
 
   def update_placeholder(correct_guesses)
-    # binding.pry
     self.placeholder = secret_word.gsub(/[^"#{correct_guesses.join('')}"]/, ' _ ')
   end
 end

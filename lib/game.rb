@@ -23,7 +23,15 @@ class Game
 
   def new_game
     word.secret_word = word.generate
-    update_game_state(word.secret_word, [], [], 15)
+    update_game_state(word.secret_word, [], [], 2)
+  end
+
+  def save_game
+    puts '================'
+    hash = create_hash
+    file_handler.save_file('save.yaml', YAML.dump(hash))
+    # puts YAML.load(YAML.dump(hash))
+    puts '================'
   end
 
   def play
@@ -38,11 +46,11 @@ class Game
 
   private
 
-  def update_game_state(secret_word, correct_guesses, incorrect_guesses, total_guesses)
+  def update_game_state(secret_word, correct_guesses, incorrect_guesses, remaining_guesses)
     word.secret_word = secret_word
     guess.correct_guesses = correct_guesses
     guess.incorrect_guesses = incorrect_guesses
-    guess.total_guesses = total_guesses
+    guess.remaining_guesses = remaining_guesses
   end
 
   def process
@@ -54,12 +62,12 @@ class Game
     update_incorrect_guesses unless validation
 
     print_result
-    update_total_guesses
+    update_remaining_guesses
     print_remaining_guesses
   end
 
   def game_end?
-    return true if guess.total_guesses.zero?
+    return true if guess.remaining_guesses.zero?
     return true if word.placeholder == word.secret_word
 
     false
@@ -70,6 +78,7 @@ class Game
   end
 
   def validate_guess
+    save_game if user_guess == 'y'
     guess.validate(user_guess, word.secret_word)
   end
 
@@ -87,16 +96,26 @@ class Game
 
   def print_result
     puts word.placeholder
-    print "Correct Guesses: #{guess.correct_guesses}\n"
-    print "Incorrect Guesses: #{guess.incorrect_guesses}\n"
+    print "Correct Guesses: #{guess.correct_guesses.join(' ')}\n"
+    print "Incorrect Guesses: #{guess.incorrect_guesses.join(' ')}\n"
   end
 
-  def update_total_guesses
-    guess.total_guesses -= 1
+  def update_remaining_guesses
+    guess.remaining_guesses -= 1
   end
 
   def print_remaining_guesses
-    puts "Guesses Remaining #{guess.total_guesses}"
+    puts "Guesses Remaining #{guess.remaining_guesses}"
+  end
+
+  def create_hash
+    {
+      remaining_guesses: guess.remaining_guesses,
+      correct_guesses: guess.correct_guesses,
+      incorrect_guesses: guess.incorrect_guesses,
+      secret_word: word.secret_word,
+      placeholder: word.placeholder
+    }
   end
 end
 

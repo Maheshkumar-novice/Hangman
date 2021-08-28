@@ -15,20 +15,20 @@ class User
 
   def make_guess
     print 'Enter Your Guess > '
-    validate_guess(gets.chomp[0])
+    validate_input(gets.chomp[0])
   end
 
   private
 
-  def validate_guess(guess)
-    return guess if guess
+  def validate_input(input)
+    return input if input
 
-    until guess
+    until input
       print 'Enter Your Guess > '
-      guess = validate_guess(gets.chomp[0])
+      input = validate_input(gets.chomp[0])
     end
 
-    guess
+    input
   end
 end
 

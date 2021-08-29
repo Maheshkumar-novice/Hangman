@@ -23,7 +23,7 @@ class Game
 
   def new_game
     word.secret_word = word.generate
-    word.update_placeholder(guess.correct_guesses)
+    word.placeholder = ' _ ' * word.secret_word.size
     update_game_state(10, [], [], word.secret_word, word.placeholder)
   end
 
@@ -112,7 +112,7 @@ class Game
   end
 
   def print_remaining_guesses
-    puts "Guesses Remaining #{guess.remaining_guesses}"
+    puts "Guesses Remaining #{guess.remaining_guesses}\n\n"
   end
 
   def create_hash

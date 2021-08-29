@@ -15,20 +15,20 @@ class User
 
   def make_guess
     print 'Enter Your Guess > '
-    validate_input(gets.chomp[0])
+    validate_input(gets.chomp)
   end
 
   private
 
   def validate_input(input)
-    return input if input
+    return input if input == 'save'
 
-    until input
+    until input =~ /^[a-z]{1}$/i
       print 'Enter Your Guess > '
-      input = validate_input(gets.chomp[0])
+      input = validate_input(gets.chomp)
     end
 
-    input
+    input.downcase
   end
 end
 

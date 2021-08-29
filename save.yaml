@@ -1,10 +1,6 @@
 ---
-:remaining_guesses: 6
-:correct_guesses:
-- o
-:incorrect_guesses:
-- e
-- f
-- a
-:secret_word: choirboy
-:placeholder: " _  _ o _  _  _ o _ "
+:remaining_guesses: 10
+:correct_guesses: []
+:incorrect_guesses: []
+:secret_word: rubato
+:placeholder: " _  _  _  _  _  _ "

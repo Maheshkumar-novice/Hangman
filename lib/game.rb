@@ -29,13 +29,9 @@ class Game
 
   def load_game
     hash = YAML.load(file_handler.retrieve_file('save.yaml'))
-    update_game_state(
-      hash[:remaining_guesses],
-      hash[:correct_guesses],
-      hash[:incorrect_guesses],
-      hash[:secret_word],
-      hash[:placeholder]
-    )
+    update_game_state(hash[:remaining_guesses], hash[:correct_guesses],
+                      hash[:incorrect_guesses], hash[:secret_word],
+                      hash[:placeholder])
   end
 
   def play
@@ -51,6 +47,11 @@ class Game
 
   def save_game
     file_handler.save_file('save.yaml', YAML.dump(create_hash))
+    puts 'Game Saved!'
+  end
+
+  def save?
+    user_guess == 'save'
   end
 
   def update_game_state(remaining_guesses, correct_guesses, incorrect_guesses, secret_word, placeholder)
@@ -63,12 +64,12 @@ class Game
 
   def process
     create_guess
+    return save_game if save?
 
     validation = validate_guess
     update_correct_guesses if validation
     update_placeholder if validation
     update_incorrect_guesses unless validation
-
     print_result
     update_remaining_guesses
     print_remaining_guesses

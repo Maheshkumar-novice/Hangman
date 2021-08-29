@@ -28,7 +28,7 @@ class Game
   end
 
   def load_game
-    hash = YAML.load(file_handler.retrieve_file('save.yaml'))
+    hash = file_handler.get_game_data
     update_game_state(hash[:remaining_guesses], hash[:correct_guesses],
                       hash[:incorrect_guesses], hash[:secret_word],
                       hash[:placeholder])
@@ -46,7 +46,8 @@ class Game
   private
 
   def save_game
-    file_handler.save_file('save.yaml', YAML.dump(create_hash))
+    filename = file_handler.get_file_name
+    file_handler.save_file("saved_games/#{filename}", YAML.dump(create_hash))
     puts 'Game Saved!'
   end
 

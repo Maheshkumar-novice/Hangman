@@ -83,6 +83,12 @@ class Game
 
   def create_guess
     self.user_guess = user.make_guess
+
+    until user_guess =~ /^[a-z]{1}$/i
+      break if user_guess == 'save'
+
+      self.user_guess = user.make_guess
+    end
   end
 
   def validate_guess

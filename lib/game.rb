@@ -24,7 +24,7 @@ class Game
   def new_game
     word.secret_word = word.generate
     word.update_placeholder(guess.correct_guesses)
-    update_game_state(word.secret_word, [], [], 10, word.placeholder)
+    update_game_state(10, [], [], word.secret_word, word.placeholder)
   end
 
   def load_game
@@ -127,5 +127,5 @@ class Game
 end
 
 g = Game.new(User.new('hi'), Word.new(FileHandler.new), Guess.new, 'result', FileHandler.new)
-g.load_game
+g.new_game
 g.play

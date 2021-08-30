@@ -23,17 +23,34 @@ class Game
     @user_guess = nil
   end
 
+  def start
+    if user.make_choice == 'y'
+      load_game
+    else
+      new_game
+    end
+    print_try_again_prompt
+    start if gets.chomp.downcase == 'y'
+  end
+
   def new_game
     word.secret_word = word.generate
     word.placeholder = ' _ ' * word.secret_word.size
     update_game_state(10, [], [], word.secret_word, word.placeholder)
+    play
   end
 
   def load_game
-    hash = file_handler.game_data
+    if file_handler.save_not_available?
+      print_no_games_found
+      return
+    else
+      hash = file_handler.game_data
+    end
     update_game_state(hash[:remaining_guesses], hash[:correct_guesses],
                       hash[:incorrect_guesses], hash[:secret_word],
                       hash[:placeholder])
+    play
   end
 
   def play

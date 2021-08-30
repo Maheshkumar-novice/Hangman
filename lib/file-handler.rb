@@ -34,4 +34,8 @@ class FileHandler
     filename = file_name until File.exist?("saved_games/#{filename}")
     YAML.safe_load(retrieve_file("saved_games/#{filename}"), [Symbol])
   end
+
+  def save_not_available?
+    Dir.empty?('saved_games')
+  end
 end

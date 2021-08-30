@@ -3,7 +3,7 @@
 
 require_relative './lib/game'
 
-game = Game.new(User.new('hi'), Word.new(FileHandler.new), Guess.new, FileHandler.new)
-game.new_game
-# g.load_game
-game.play
+user = User.new
+user.name = user.create_username
+game = Game.new(user, Word.new(FileHandler.new), Guess.new, FileHandler.new)
+game.start

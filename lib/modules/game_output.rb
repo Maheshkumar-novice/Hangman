@@ -43,4 +43,13 @@ module GameOutput
       announce_user_lost
     end
   end
+
+  def print_no_games_found
+    puts color_text('No Saved Games Found!', :red)
+  end
+
+  def print_try_again_prompt
+    print color_text('Try Again? ', :cyan)
+    print color_text('(y/n) > ', :yellow)
+  end
 end

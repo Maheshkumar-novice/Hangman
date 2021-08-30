@@ -1,8 +1,12 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require_relative 'color'
+
 # Class FileHandler
 class FileHandler
+  include Color
+
   def retrieve_file(filename)
     File.read(filename)
   end
@@ -14,21 +18,21 @@ class FileHandler
   end
 
   def list_files
-    puts "\nAll Saved Games:  "
+    puts color_text("\nAll Saved Games:  ", :green)
     system('ls saved_games/')
-    puts 
+    puts
   end
 
-  def get_file_name
+  def file_name
     list_files
-    print 'Enter FileName to Save/Load > '
+    print color_text('Enter FileName > ', :magenta)
     gets.chomp
   end
 
-  def get_game_data
-    filename = get_file_name
-    filename = get_file_name until File.exist?("saved_games/#{filename}")
-    YAML.load(retrieve_file("saved_games/#{filename}"))
+  def game_data
+    filename = file_name
+    filename = file_name until File.exist?("saved_games/#{filename}")
+    YAML.safe_load(retrieve_file("saved_games/#{filename}"), [Symbol])
   end
 end
 

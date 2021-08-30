@@ -1,9 +1,0 @@
----
-:remaining_guesses: 7
-:correct_guesses:
-- e
-- s
-:incorrect_guesses:
-- d
-:secret_word: rashness
-:placeholder: " _  _ s _  _ ess"

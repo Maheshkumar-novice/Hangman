@@ -1,8 +1,12 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require_relative 'color'
+
 # Class User
 class User
+  include Color
+
   attr_reader :name
 
   def self.validate_name(name)
@@ -14,7 +18,7 @@ class User
   end
 
   def make_guess
-    print 'Enter Your Guess > '
+    print color_text('Enter Your Guess > ', :cyan)
     gets.chomp
   end
 end

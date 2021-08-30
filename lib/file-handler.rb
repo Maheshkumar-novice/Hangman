@@ -16,7 +16,7 @@ class FileHandler
   def list_files
     puts "\nAll Saved Games:  "
     system('ls saved_games/')
-    puts
+    puts 
   end
 
   def get_file_name

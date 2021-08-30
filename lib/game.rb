@@ -1,22 +1,24 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative './file-handler'
-require_relative './user'
-require_relative './word'
-require_relative './guess'
+require_relative 'file-handler'
+require_relative 'user'
+require_relative 'word'
+require_relative 'guess'
+require_relative 'game_output'
 require 'pry'
 
 # Class Game
 class Game
-  attr_reader :user, :word, :guess, :result, :file_handler
+  include GameOutput
+
+  attr_reader :user, :word, :guess, :file_handler
   attr_accessor :user_guess
 
-  def initialize(user, word, guess, result, file_handler)
+  def initialize(user, word, guess, file_handler)
     @user = user
     @word = word
     @guess = guess
-    @result = result
     @file_handler = file_handler
     @user_guess = nil
   end
@@ -35,11 +37,10 @@ class Game
   end
 
   def play
-    print_result
-    print_remaining_guesses
+    print_game_state
     loop do
-      process
-      break if game_end?
+      process_the_game
+      break announce_result if game_end?
     end
   end
 
@@ -48,7 +49,7 @@ class Game
   def save_game
     filename = file_handler.get_file_name
     file_handler.save_file("saved_games/#{filename}", YAML.dump(create_hash))
-    puts 'Game Saved!'
+    print_game_saved
   end
 
   def save?
@@ -63,7 +64,7 @@ class Game
     word.placeholder = placeholder
   end
 
-  def process
+  def process_the_game
     create_guess
     return save_game if save?
 
@@ -71,9 +72,8 @@ class Game
     update_correct_guesses if validation
     update_placeholder if validation
     update_incorrect_guesses unless validation
-    print_result
     update_remaining_guesses
-    print_remaining_guesses
+    print_game_state
   end
 
   def game_end?
@@ -109,18 +109,8 @@ class Game
     guess.incorrect_guesses << user_guess unless guess.incorrect_guesses.include?(user_guess)
   end
 
-  def print_result
-    puts word.placeholder
-    print "Correct Guesses: #{guess.correct_guesses.join(' ')}\n"
-    print "Incorrect Guesses: #{guess.incorrect_guesses.join(' ')}\n"
-  end
-
   def update_remaining_guesses
     guess.remaining_guesses -= 1
-  end
-
-  def print_remaining_guesses
-    puts "Guesses Remaining #{guess.remaining_guesses}\n\n"
   end
 
   def create_hash
@@ -134,6 +124,7 @@ class Game
   end
 end
 
-g = Game.new(User.new('hi'), Word.new(FileHandler.new), Guess.new, 'result', FileHandler.new)
-g.new_game
+g = Game.new(User.new('hi'), Word.new(FileHandler.new), Guess.new, FileHandler.new)
+# g.new_game
+g.load_game
 g.play

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative 'color'
+require_relative 'modules/color'
 
 # Class FileHandler
 class FileHandler
@@ -35,8 +35,3 @@ class FileHandler
     YAML.safe_load(retrieve_file("saved_games/#{filename}"), [Symbol])
   end
 end
-
-# puts FileHandler.new.get_file_name
-# FileHandler.new.list_files
-# Store.new.retrieve_file('lib/user.rb')
-# Store.new.save_file('lib/a.txt', 'hello')

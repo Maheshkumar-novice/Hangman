@@ -11,7 +11,7 @@ class Word
   end
 
   def generate
-    dictionary = file_handler.retrieve_file('lib/dictionary.txt').split("\n")
+    dictionary = file_handler.retrieve_file('lib/word_list/dictionary.txt').split("\n")
     word = dictionary.sample
     word = dictionary.sample until word.length >= 5 && word.length <= 12
     word

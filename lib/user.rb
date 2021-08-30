@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative 'color'
+require_relative 'modules/color'
 
 # Class User
 class User
@@ -22,5 +22,3 @@ class User
     gets.chomp
   end
 end
-
-# puts User.new('hi').make_guess

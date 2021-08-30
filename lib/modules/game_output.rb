@@ -35,6 +35,8 @@ module GameOutput
   end
 
   def announce_result
+    print color_text('Secret Word: ', :cyan)
+    print color_text("#{word.secret_word}\n", :magenta)
     if word.placeholder == word.secret_word
       announce_user_win
     else

@@ -5,7 +5,7 @@ require_relative 'file-handler'
 require_relative 'user'
 require_relative 'word'
 require_relative 'guess'
-require_relative 'game_output'
+require_relative 'modules/game_output'
 require 'pry'
 
 # Class Game
@@ -123,8 +123,3 @@ class Game
     }
   end
 end
-
-g = Game.new(User.new('hi'), Word.new(FileHandler.new), Guess.new, FileHandler.new)
-# g.new_game
-g.load_game
-g.play

@@ -13,7 +13,7 @@ module GameOutput
       #{color_text('Secret Holder: ', :yellow)}#{word.placeholder}
       #{color_text('Correct Guesses: ', :green)}#{guess.correct_guesses.join(' ')}
       #{color_text('Incorrect Guesses: ', :red)}#{guess.incorrect_guesses.join(' ')}
-      #{color_text('Guesses Remaining: ', :magenta)}#{guess.remaining_guesses}
+      #{color_text('Incorrect Guesses Remaining: ', :magenta)}#{guess.remaining_incorrect_guesses}
 
     GAME
   end

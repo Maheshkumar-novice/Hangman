@@ -36,7 +36,7 @@ class Game
   def new_game
     word.secret_word = word.generate
     word.placeholder = ' _ ' * word.secret_word.size
-    update_game_state(10, [], [], word.secret_word, word.placeholder)
+    update_game_state(5, [], [], word.secret_word, word.placeholder)
     play
   end
 
@@ -47,8 +47,10 @@ class Game
     else
       hash = file_handler.game_data
     end
-    update_game_state(hash[:remaining_guesses], hash[:correct_guesses],
-                      hash[:incorrect_guesses], hash[:secret_word],
+    update_game_state(hash[:remaining_incorrect_guesses],
+                      hash[:correct_guesses],
+                      hash[:incorrect_guesses],
+                      hash[:secret_word],
                       hash[:placeholder])
     play
   end
@@ -73,8 +75,8 @@ class Game
     user_guess == 'save'
   end
 
-  def update_game_state(remaining_guesses, correct_guesses, incorrect_guesses, secret_word, placeholder)
-    guess.remaining_guesses = remaining_guesses
+  def update_game_state(remaining_incorrect_guesses, correct_guesses, incorrect_guesses, secret_word, placeholder)
+    guess.remaining_incorrect_guesses = remaining_incorrect_guesses
     guess.correct_guesses = correct_guesses
     guess.incorrect_guesses = incorrect_guesses
     word.secret_word = secret_word
@@ -89,12 +91,12 @@ class Game
     update_correct_guesses if validation
     update_placeholder if validation
     update_incorrect_guesses unless validation
-    update_remaining_guesses
+    update_remaining_incorrect_guesses unless validation
     print_game_state
   end
 
   def game_end?
-    return true if guess.remaining_guesses.zero?
+    return true if guess.remaining_incorrect_guesses.zero?
     return true if word.placeholder == word.secret_word
 
     false
@@ -102,7 +104,6 @@ class Game
 
   def create_guess
     self.user_guess = user.make_guess
-
     until user_guess =~ /^[a-z]{1}$/i
       break if user_guess == 'save'
 
@@ -126,13 +127,13 @@ class Game
     guess.incorrect_guesses << user_guess unless guess.incorrect_guesses.include?(user_guess)
   end
 
-  def update_remaining_guesses
-    guess.remaining_guesses -= 1
+  def update_remaining_incorrect_guesses
+    guess.remaining_incorrect_guesses -= 1
   end
 
   def create_hash
     {
-      remaining_guesses: guess.remaining_guesses,
+      remaining_incorrect_guesses: guess.remaining_incorrect_guesses,
       correct_guesses: guess.correct_guesses,
       incorrect_guesses: guess.incorrect_guesses,
       secret_word: word.secret_word,

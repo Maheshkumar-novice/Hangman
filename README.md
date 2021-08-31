@@ -29,6 +29,7 @@ This project is part of the [The Odin Project](https://www.theodinproject.com/pa
 </details>
 
 ## Description
+  This implementation of **Hangman** played between a human and the computer. Computer will choose a word which will be between 5 to 12 characters. User needs to guess the word one letter at a time within the given number wrong attempts. If the user guess the word within the constraint then the user will be the winner. Else the computer is the winner. You can save the game with the particular file name with the 'save' input at anytime while playing and load it when the game starts. You can exit the game while playing with the 'exit' input.
   
 
 ## Demo

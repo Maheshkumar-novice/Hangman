@@ -19,10 +19,6 @@ module GameOutput
     GAME
   end
 
-  def print_game_saved
-    puts 'Game Saved!'
-  end
-
   def announce_user_win
     print_hangman_free
     puts <<~WIN
@@ -46,6 +42,10 @@ module GameOutput
       announce_user_lost
     end
     print_thank_you
+  end
+
+  def print_game_saved
+    puts 'Game Saved!'
   end
 
   def print_thank_you

@@ -11,6 +11,7 @@ module GameOutput
     puts <<~GAME
 
       #{color_text('Secret Holder: ', :yellow)}#{word.placeholder}
+      #{color_text("Secret Word's Length is: ", :cyan)}#{color_text(word.secret_word.size.to_s, :magenta)}
       #{color_text('Correct Guesses: ', :green)}#{guess.correct_guesses.join(' ')}
       #{color_text('Incorrect Guesses: ', :red)}#{guess.incorrect_guesses.join(' ')}
       #{color_text('Incorrect Guesses Remaining: ', :magenta)}#{guess.remaining_incorrect_guesses}

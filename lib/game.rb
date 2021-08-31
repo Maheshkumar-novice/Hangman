@@ -99,6 +99,7 @@ class Game
 
     update_incorrect_guesses
     decrease_remaining_incorrect_guesses
+    print_hangman(guess.remaining_incorrect_guesses)
   end
 
   def create_user_guess

@@ -24,12 +24,14 @@ module GameOutput
   end
 
   def announce_user_win
+    print_hangman_free
     puts <<~WIN
       #{color_text('User: ', :cyan)}#{color_text("#{user.name} ", :magenta)}#{color_text('Won!', :green)}
     WIN
   end
 
   def announce_user_lost
+    print_hangman_dead
     puts <<~LOST
       #{color_text('User: ', :cyan)}#{color_text("#{user.name} ", :magenta)}#{color_text('Lost!', :red)}
     LOST
@@ -83,5 +85,108 @@ module GameOutput
       #{color_text("Don't repeat the same guess again.", :magenta)}
 
     INTRO
+  end
+
+  def print_hangman_1
+    puts color_text("
+      __
+      ||------------
+      ||         |
+      ||         ◯
+      ||
+      ||
+      ||
+      ||
+      ||
+  ____||_____
+  ", :yellow)
+  end
+
+  def print_hangman_2
+    puts color_text("
+      __
+      ||------------
+      ||         |
+      ||         ◯
+      ||       __|__
+      ||        
+      ||
+      ||
+      ||
+  ____||_____
+  ", :yellow)
+  end
+
+  def print_hangman_3
+    puts color_text("
+      __
+      ||------------
+      ||         |
+      ||         ◯
+      ||       __|__
+      ||         |
+      ||
+      ||
+      ||
+  ____||_____
+  ", :yellow)
+  end
+
+  def print_hangman_4
+    puts color_text("
+      __
+      ||------------
+      ||         |
+      ||         ◯
+      ||       __|__
+      ||         |
+      ||        /
+      ||
+      ||
+  ____||_____
+  ", :yellow)
+  end
+
+  def print_hangman_dead
+    puts color_text("
+      __
+      ||------------
+      ||         |
+      ||         ◯
+      ||       __|__
+      ||         |
+      ||        / \\
+      ||
+      ||
+  ____||_____
+  ", :red)
+  end
+
+  def print_hangman_free
+    puts color_text("
+      __
+      ||------------
+      ||         |
+      ||
+      ||
+      ||
+      ||         ◯
+      ||       __|__
+      ||         |
+  ____||________/ \\______
+  ", :green)
+  end
+
+  def print_hangman(value)
+    case value
+    when 4
+      print_hangman_1
+    when 3
+      print_hangman_2
+    when 2
+      print_hangman_3
+    when 1
+      print_hangman_4
+    end
   end
 end

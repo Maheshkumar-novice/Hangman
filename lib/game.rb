@@ -59,6 +59,7 @@ class Game
     print_game_state
     loop do
       process_the_game
+      break if exit?
       break announce_result if game_end?
     end
   end
@@ -75,6 +76,10 @@ class Game
     user_guess == 'save'
   end
 
+  def exit?
+    user_guess == 'exit'
+  end
+
   def update_game_state(remaining_incorrect_guesses, correct_guesses, incorrect_guesses, secret_word, placeholder)
     guess.remaining_incorrect_guesses = remaining_incorrect_guesses
     guess.correct_guesses = correct_guesses
@@ -86,6 +91,7 @@ class Game
   def process_the_game
     create_guess
     return save_game if save?
+    return if exit?
 
     if guess.already_guessed?(user_guess)
       print_already_guessed
@@ -118,7 +124,7 @@ class Game
   def create_guess
     self.user_guess = user.make_guess
     until user_guess =~ /^[a-z]{1}$/i
-      break if user_guess == 'save'
+      break if user_guess =~ /^save$|^exit$/i
 
       self.user_guess = user.make_guess
     end

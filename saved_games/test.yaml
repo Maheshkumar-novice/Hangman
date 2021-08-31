@@ -1,0 +1,10 @@
+---
+:remaining_incorrect_guesses: 5
+:correct_guesses:
+- e
+- a
+- p
+- o
+:incorrect_guesses: []
+:secret_word: apologue
+:placeholder: "apo\e[33m _ \e[0mo\e[33m _ \e[0m\e[33m _ \e[0me"

@@ -3,7 +3,7 @@
 
 require_relative 'modules/color'
 
-# Class User
+# Class User - User Related Operations
 class User
   include Color
 

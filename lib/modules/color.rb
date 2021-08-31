@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Module Color
+# Module Color - To Color Text
 module Color
   def color_map(color)
     {

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Module Hangman
+# Module Hangman - Displaying Hangman
 module PrintHangman
   def print_hangman_1
     puts color_text("

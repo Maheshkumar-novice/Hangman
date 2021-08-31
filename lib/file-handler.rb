@@ -4,7 +4,7 @@
 require_relative 'modules/color'
 require 'yaml'
 
-# Class FileHandler
+# Class FileHandler - Game Related File Operations
 class FileHandler
   include Color
 

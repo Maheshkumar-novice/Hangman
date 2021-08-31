@@ -3,7 +3,7 @@
 
 require_relative 'modules/color'
 
-# Class Word
+# Class Word - Word Related Operations
 class Word
   include Color
 

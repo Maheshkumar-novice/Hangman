@@ -9,7 +9,7 @@ require_relative 'modules/game_output'
 require_relative 'modules/print-hangman'
 require 'yaml'
 
-# Class Game
+# Class Game - Game Driver & Operations
 class Game
   include GameOutput
   include PrintHangman

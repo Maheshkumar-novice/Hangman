@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Class Guess
+# Class Guess - Guess Related Operations
 class Guess
   attr_accessor :remaining_incorrect_guesses, :correct_guesses, :incorrect_guesses
 

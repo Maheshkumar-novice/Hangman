@@ -3,7 +3,7 @@
 
 require_relative 'color'
 
-# Module GameOutput
+# Module GameOutput - Game Outputs
 module GameOutput
   include Color
 

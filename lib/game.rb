@@ -6,6 +6,7 @@ require_relative 'user'
 require_relative 'word'
 require_relative 'guess'
 require_relative 'modules/game_output'
+require 'yaml'
 
 # Class Game
 class Game

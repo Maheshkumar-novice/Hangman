@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require_relative 'modules/color'
+require 'yaml'
 
 # Class FileHandler
 class FileHandler

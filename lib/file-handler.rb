@@ -35,7 +35,10 @@ class FileHandler
 
   def game_data
     filename = file_name
-    filename = file_name until File.exist?("#{SAVE_DIR}/#{filename}")
+    until File.exist?("#{SAVE_DIR}/#{filename}")
+      puts color_text('Enter a Valid File Name :)', :red)
+      filename = file_name
+    end
     YAML.safe_load(retrieve_file("#{SAVE_DIR}/#{filename}"), [Symbol])
   end
 

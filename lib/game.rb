@@ -65,7 +65,7 @@ class Game
     print_game_state
     loop do
       process_the_game
-      break if exit?
+      break print_thank_you if exit?
       break announce_result if game_end?
     end
   end

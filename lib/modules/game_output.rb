@@ -43,6 +43,11 @@ module GameOutput
     else
       announce_user_lost
     end
+    print_thank_you
+  end
+
+  def print_thank_you
+    puts "\n#{color_text('Thank you for Playing!', :yellow)}"
   end
 
   def print_no_games_found

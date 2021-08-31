@@ -30,7 +30,12 @@ class FileHandler
   def file_name
     list_files
     print color_text('Enter FileName > ', :magenta)
-    gets.chomp
+    file_name = gets.chomp
+    until file_name =~ /^\w+$/
+      print color_text('Enter a Valid File Name > ', :red)
+      file_name = gets.chomp
+    end
+    file_name
   end
 
   def game_data

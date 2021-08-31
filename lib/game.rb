@@ -38,7 +38,7 @@ class Game
     else
       new_game
     end
-    print_try_again_prompt
+    print_go_again_prompt
     start if gets.chomp.downcase == 'y'
   end
 

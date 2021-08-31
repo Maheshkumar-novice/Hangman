@@ -56,8 +56,8 @@ module GameOutput
     puts color_text('No Saved Games Found!', :red)
   end
 
-  def print_try_again_prompt
-    print color_text('Try Again? ', :cyan)
+  def print_go_again_prompt
+    print color_text('Go Again? ', :cyan)
     print color_text('(y/n) > ', :yellow)
   end
 

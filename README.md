@@ -47,7 +47,7 @@ This project is part of the [The Odin Project](https://www.theodinproject.com/pa
 You need to have Ruby installed locally. If you don't have, use [this](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-programming/lessons/installing-ruby-ruby-programming) to install Ruby first.
 ### installation
 ```sh
-git clone git@github.com:Maheshkumar-novice/Tic-Tac-Toe.git
+git clone git@github.com:Maheshkumar-novice/Hangman.git
 ```
 ```sh
 cd Hangman

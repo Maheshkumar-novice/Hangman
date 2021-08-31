@@ -33,7 +33,7 @@ This project is part of the [The Odin Project](https://www.theodinproject.com/pa
   
 
 ## Demo
-![Example](./assets/example.gif)
+![Demo](./assets/demo.gif)
 </br>
 
 ## Built With

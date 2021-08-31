@@ -22,6 +22,7 @@ class FileHandler
   def list_files
     puts color_text("\nAll Saved Games:  ", :green)
     system("ls #{SAVE_DIR}")
+    puts color_text('No Saved Games Found! :(', :red) if save_not_available?
     puts
   end
 

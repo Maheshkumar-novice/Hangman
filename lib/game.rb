@@ -25,6 +25,10 @@ class Game
     @user_guess = nil
   end
 
+  def intro 
+    print_game_intro
+  end
+
   def start
     if user.make_choice == 'y'
       load_game

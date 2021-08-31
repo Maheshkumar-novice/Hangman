@@ -31,7 +31,7 @@ class FileHandler
     list_files
     print color_text('Enter FileName > ', :magenta)
     file_name = gets.chomp
-    until file_name =~ /^\w+$/
+    until file_name =~ /^[a-z0-9.]$/i
       print color_text('Enter a Valid File Name > ', :red)
       file_name = gets.chomp
     end

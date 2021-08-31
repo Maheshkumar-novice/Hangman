@@ -7,15 +7,15 @@ require_relative 'modules/color'
 class Word
   include Color
 
-  attr_reader :file_handler
+  attr_reader :file_handler, :dictionary
   attr_accessor :secret_word, :placeholder
 
   def initialize(file_handler)
     @file_handler = file_handler
+    @dictionary = file_handler.retrieve_file('lib/word_list/dictionary.txt').split("\n")
   end
 
   def generate
-    dictionary = file_handler.retrieve_file('lib/word_list/dictionary.txt').split("\n")
     word = dictionary.sample
     word = dictionary.sample until word.length >= 5 && word.length <= 12
     word.downcase

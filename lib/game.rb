@@ -12,6 +12,8 @@ require 'pry'
 class Game
   include GameOutput
 
+  SAVE_DIR = 'saved_games'
+
   attr_reader :user, :word, :guess, :file_handler
   attr_accessor :user_guess
 
@@ -68,7 +70,7 @@ class Game
 
   def save_game
     filename = file_handler.file_name
-    file_handler.save_file("saved_games/#{filename}", YAML.dump(create_hash))
+    file_handler.save_file("#{SAVE_DIR}/#{filename}", YAML.dump(create_hash))
     print_game_saved
   end
 

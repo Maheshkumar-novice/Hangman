@@ -7,6 +7,8 @@ require_relative 'modules/color'
 class FileHandler
   include Color
 
+  SAVE_DIR = 'saved_games/'
+
   def retrieve_file(filename)
     File.read(filename)
   end
@@ -19,7 +21,7 @@ class FileHandler
 
   def list_files
     puts color_text("\nAll Saved Games:  ", :green)
-    system('ls saved_games/')
+    system("ls #{SAVE_DIR}")
     puts
   end
 
@@ -31,11 +33,11 @@ class FileHandler
 
   def game_data
     filename = file_name
-    filename = file_name until File.exist?("saved_games/#{filename}")
-    YAML.safe_load(retrieve_file("saved_games/#{filename}"), [Symbol])
+    filename = file_name until File.exist?("#{SAVE_DIR}/#{filename}")
+    YAML.safe_load(retrieve_file("#{SAVE_DIR}/#{filename}"), [Symbol])
   end
 
   def save_not_available?
-    Dir.empty?('saved_games')
+    Dir.empty?(SAVE_DIR.to_s)
   end
 end

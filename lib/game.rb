@@ -128,6 +128,7 @@ class Game
     until user_guess =~ /^[a-z]{1}$/i
       break if user_guess =~ /^save$|^exit$/i
 
+      print_user_guess_error
       self.user_guess = user.make_guess
     end
   end

@@ -16,7 +16,10 @@ class User
   def create_username
     print color_text('Enter User Name > ', :cyan)
     name = gets.chomp
-    name = create_username until name.strip.size >= 1
+    until name.strip.size >= 1
+      print color_text("Enter a Valid UserName :) \n", :red)
+      name = create_username
+    end
     name
   end
 

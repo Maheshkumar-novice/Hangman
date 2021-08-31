@@ -57,4 +57,8 @@ module GameOutput
   def print_already_guessed
     print color_text("You Already Guessed This Letter! :)\n", :red)
   end
+
+  def print_user_guess_error
+    print color_text("Enter a Valid Guess :) \n", :red)
+  end
 end

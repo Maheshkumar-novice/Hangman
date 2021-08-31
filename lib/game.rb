@@ -87,12 +87,25 @@ class Game
     create_guess
     return save_game if save?
 
-    validation = validate_guess
-    update_correct_guesses if validation
-    update_placeholder if validation
-    update_incorrect_guesses unless validation
-    update_remaining_incorrect_guesses unless validation
+    if guess.already_guessed?(user_guess)
+      print_already_guessed
+    else
+      validation = validate_guess
+      update(validation)
+    end
     print_game_state
+  end
+
+  def update(validation)
+    if validation
+      update_correct_guesses
+      update_placeholder
+    end
+
+    unless validation
+      update_incorrect_guesses
+      update_remaining_incorrect_guesses
+    end
   end
 
   def game_end?

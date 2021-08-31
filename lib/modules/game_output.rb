@@ -52,4 +52,8 @@ module GameOutput
     print color_text('Try Again? ', :cyan)
     print color_text('(y/n) > ', :yellow)
   end
+
+  def print_already_guessed
+    print color_text("You Already Guessed This Letter! :)\n", :red)
+  end
 end

@@ -17,7 +17,7 @@ class User
     print color_text('Enter User Name > ', :cyan)
     name = gets.chomp
     until name.strip.size >= 1
-      print color_text("Enter a Valid UserName :) \n", :red)
+      puts color_text('Enter a Valid UserName :)', :red)
       name = create_username
     end
     name
@@ -32,7 +32,10 @@ class User
     print color_text('Do you want load the saved game? ', :yellow)
     print color_text('(y/n) > ', :magenta)
     choice = gets.chomp
-    choice = get_choice until choice =~ /^[y|n]{1}$/i
+    until choice =~ /^[y|n]{1}$/i
+      puts color_text('Enter a Valid Option (y/n) :)', :red)
+      choice = get_choice
+    end
     choice
   end
 end

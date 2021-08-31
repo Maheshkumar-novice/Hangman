@@ -5,7 +5,7 @@ require_relative 'file-handler'
 require_relative 'user'
 require_relative 'word'
 require_relative 'guess'
-require_relative 'modules/game_output'
+require_relative 'modules/game-output'
 require_relative 'modules/print-hangman'
 require 'yaml'
 

@@ -7,7 +7,7 @@ require_relative 'modules/color'
 class FileHandler
   include Color
 
-  SAVE_DIR = 'saved_games/'
+  SAVE_DIR = 'saved_games'
 
   def retrieve_file(filename)
     File.read(filename)
